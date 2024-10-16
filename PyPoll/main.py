@@ -33,28 +33,36 @@ with open(file_to_load) as election_data:
         candidate_name = row[2]
 
         # If the candidate is not already in the candidate list, add them
-
+        if candidate_name not in candidates:
+            candidates.append(candidate_name)
+            candidatevotes[candidate_name] = 0
 
         # Add a vote to the candidate's count
-
+        candidatevotes[candidate_name] += 1
 
 # Open a text file to save the output
-#with open(file_to_output, "w") as txt_file:
+with open(file_to_output, "w") as txt_file:
 
     # Print the total vote count (to terminal)
+    electionresults = (
+        f"Election Results\n"
+        f"-------------------------\n"
+        f"Total votes: {total_votes}\n"
+        f"-------------------------\n"
+    )
 
-
-    # Write the total vote count to the text file
+    print(electionresults, end="") # Print a loading indicator (for large datasets)
 
 
     # Loop through the candidates to determine vote percentages and identify the winner
-
+    for candidate in candidates:
 
         # Get the vote count and calculate the percentage
-
+        votes = candidatevotes[candidate]
+        vote_percentage = (votes/total_votes)*100
 
         # Update the winning candidate if this one has more votes
-
+        
 
         # Print and save each candidate's vote count and percentage
 
@@ -69,6 +77,6 @@ with open(file_to_load) as election_data:
 
 
 
-print(total_votes)
+
 
 
