@@ -52,7 +52,7 @@ with open(file_to_output, "w") as txt_file:
     )
 
     print(electionresults, end="") # Print a loading indicator (for large datasets)
-
+    txt_file.write(electionresults)
 
     # Loop through the candidates to determine vote percentages and identify the winner
     for candidate in candidates:
@@ -62,16 +62,28 @@ with open(file_to_output, "w") as txt_file:
         vote_percentage = (votes/total_votes)*100
 
         # Update the winning candidate if this one has more votes
-        
+        if votes> winning_count:
+            winning_count = votes
+            winning_candidate = candidate
+            winning_percentage = vote_percentage
 
         # Print and save each candidate's vote count and percentage
 
-
+        candidateresults = f"{candidate}:{vote_percentage:.3f}% ({votes})\n"
+        print (candidateresults, end="")
+        txt_file.write(candidateresults)
+        
     # Generate and print the winning candidate summary
-
-
+    winning_candidate_summary = (
+        f"-------------------------\n"
+        f"Winner: {winning_candidate}\n"
+        f"-------------------------\n" 
+    )
+    print(winning_candidate_summary)
     # Save the winning candidate summary to the text file
-
+    
+    
+    txt_file.write(winning_candidate_summary)
 
 
 
