@@ -55,7 +55,7 @@ with open(file_to_output, "w") as txt_file:
     txt_file.write(electionresults)
 
     # Loop through the candidates to determine vote percentages and identify the winner
-    for candidate in candidates:
+    for candidate in candidatevotes:
 
         # Get the vote count and calculate the percentage
         votes = candidatevotes[candidate]
